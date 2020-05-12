@@ -2,5 +2,6 @@
 public enum TypeEquip {
 	Equipement,
 	Armement,
-	Protection
+	Protection,
+	Potion
 }

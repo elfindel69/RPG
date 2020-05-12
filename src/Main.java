@@ -17,17 +17,21 @@ public class Main {
 		System.out.println(p1.getNom());
 		System.out.println("avant achat: ");
 		System.out.println("PV: "+p1.getPV());
+		System.out.println("mana: "+p1.getMana());
 		System.out.println("argent: "+p1.getArgent());
 		Equip e1 = new Equip("Couette", TypeEquip.Equipement,50);
 		p1.addEquip(e1);
-		EquipPV e2 = new EquipPV("potion de vie", TypeEquip.Equipement, 20, 10);
+		EquipPV e2 = new EquipPV("potion de vie", TypeEquip.Potion, 20, 10);
 		p1.addEquip(e2);
+		EquipMagique e3 = new EquipMagique("potion de mana", TypeEquip.Potion, 20, 10);
+		p1.addEquip(e3);
 		System.out.println("équipement achetés: ");
 		p1.getlEquip().stream().forEach(System.out::println);
 		int sum = p1.getlEquip().stream().map(x -> x.getPrix()).reduce(0,(x,y) -> x+y);
 		System.out.println("total achats: "+sum);
 		System.out.println("après achat: ");
 		System.out.println("PV: "+p1.getPV());
+		System.out.println("mana: "+p1.getMana());
 		System.out.println("argent: "+p1.getArgent());
 		
 		Sort s1 = new Sort("boule de feu",1,TypeSort.Feu,6,3);
@@ -35,10 +39,10 @@ public class Main {
 		System.out.println("dégats: "+s1.lancer());
 		p1.addSort(s1);
 		
-		p1.addEquip(new Equip("Beretta", TypeEquip.Armement, 100));
+		p1.addEquip(new Arme("Beretta", 100, 6, 3));
 		
-		System.out.println("equipement Perso 1");
-		p1.getlEquip().stream().filter(x -> x.getType() == TypeEquip.Equipement ).forEach(System.out::println);
+		System.out.println("potions Perso 1");
+		p1.getlEquip().stream().filter(x -> x.getType() == TypeEquip.Potion ).forEach(System.out::println);
 	
 	}
 	
