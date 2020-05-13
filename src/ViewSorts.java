@@ -41,8 +41,6 @@ public class ViewSorts {
 			System.out.println("Portée: "+ ((SortPortee) sort).getPortee());
 		}
 		if (sort instanceof SortZone) {
-			System.out.println("Dé: "+ ((SortZone) sort).getDe());
-			System.out.println("modif: "+ ((SortZone) sort).getModif());
 			System.out.println("Portée: "+ ((SortZone) sort).getPortee());
 		}
 		System.out.println("------");
