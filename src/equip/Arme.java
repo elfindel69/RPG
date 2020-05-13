@@ -1,3 +1,5 @@
+package equip;
+import Utils.Degat;
 
 public class Arme extends Equip implements Degat{
 

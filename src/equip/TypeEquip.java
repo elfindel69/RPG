@@ -1,3 +1,4 @@
+package equip;
 
 public enum TypeEquip {
 	Equipement,
