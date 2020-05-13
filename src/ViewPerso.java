@@ -1,3 +1,5 @@
+import java.util.List;
+
 import personnage.Personnage;
 
 /**
@@ -13,10 +15,19 @@ public class ViewPerso {
 	}
 	
 	/**
+	 * affichage List de Personnage
+	 * @param listPersos - liste à afficher
+	 */
+	static void viewList(List<Personnage> listPersos) {
+		System.out.println("Liste de personnages");
+		listPersos.stream().forEach(ViewPerso::describe);
+		System.out.println("***");
+	}
+	/**
 	 * affichage Personnage
 	 * @param perso
 	 */
-	static void describe (Personnage perso) {
+	private static void describe (Personnage perso) {
 		System.out.println("Personnage: ");
 		System.out.println("nom: " + perso.getNom());
 		System.out.println("archetype: "+ perso.getArchetype());
@@ -28,17 +39,18 @@ public class ViewPerso {
 		System.out.println("PV: "+perso.getPV());
 		System.out.println("XP: "+perso.getXP());
 		System.out.println("mana: "+perso.getMana());
-		System.out.println(" ------ ");
+		
 		if (perso.getlEquip().size() > 0) {
+			System.out.println(" ----- ");
 			System.out.println("Equipement: ");
 			perso.getlEquip().stream().forEach(System.out::println);
-			System.out.println(" ------ ");
 		}
 		if (perso.getlSorts().size() > 0) {
+			System.out.println(" ----- ");
 			System.out.println("Sorts: ");
 			perso.getlSorts().stream().forEach(System.out::println);
-			System.out.println(" ------ ");
 		}
+		System.out.println(" -------- ");
 	}
 
 }
