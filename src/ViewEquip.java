@@ -4,6 +4,7 @@ import equip.Arme;
 import equip.Equip;
 import equip.EquipMagique;
 import equip.EquipPV;
+import equip.TypeEquip;
 
 /**
  * affichage classes Equip
@@ -22,8 +23,15 @@ public class ViewEquip {
 	 * @param listEquip - liste à afficher
 	 */
 	static void viewList(List<Equip> listEquip) {
-		System.out.println("liste des équipements");
-		listEquip.stream().forEach(ViewEquip::describe);
+		System.out.println("liste des équipements: ");
+		System.out.println(" - équipements de base:");
+		listEquip.stream().filter(x -> x.getType() == TypeEquip.Equipement).forEach(ViewEquip::describe);
+		System.out.println(" --- ");
+		System.out.println(" - armement:");
+		listEquip.stream().filter(x -> x.getType() == TypeEquip.Armement).forEach(ViewEquip::describe);
+		System.out.println("***");
+		System.out.println(" - potions:");
+		listEquip.stream().filter(x -> x.getType() == TypeEquip.Potion).forEach(ViewEquip::describe);
 		System.out.println("***");
 	}
 	
