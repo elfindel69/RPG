@@ -10,7 +10,11 @@ import equip.TypeEquip;
 import personnage.Archetype;
 import personnage.Personnage;
 import personnage.Sexe;
+import sorts.Portee;
 import sorts.Sort;
+import sorts.SortDegat;
+import sorts.SortPortee;
+import sorts.SortZone;
 import sorts.TypeSort;
 
 public class Main {
@@ -51,10 +55,16 @@ public class Main {
 		p2.addEquip(e3);
 		
 		//sorts
-		Sort s1 = new Sort("boule de feu",1,TypeSort.Feu,6,3);
+		SortDegat s1 = new SortDegat("boule de feu",1,TypeSort.Feu,6,3);
 		listSorts.add(s1);
-		Sort s2 = new Sort("éclair en chaine",1,TypeSort.Energie,6,3);
+		SortZone s2 = new SortZone("éclair en chaine",1,TypeSort.Energie,6,3,Portee.Faible);
 		listSorts.add(s2);
+		SortDegat s3 = new SortDegat("rayon de givre",1,TypeSort.Eau,6,3);
+		listSorts.add(s3);
+		SortPortee s4 = new SortPortee("lumière dansante",1,TypeSort.Energie,Portee.Moyenne);
+		listSorts.add(s4);
+		SortPortee s5 = new SortPortee("main de mage",1,TypeSort.Energie,Portee.Faible);
+		listSorts.add(s5);
 		
 		//ajout sorts - perso p1
 		p1.addSort(s1);

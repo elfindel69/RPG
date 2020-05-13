@@ -1,6 +1,9 @@
 import java.util.List;
 
 import sorts.Sort;
+import sorts.SortDegat;
+import sorts.SortPortee;
+import sorts.SortZone;
 
 /**
  * affichage des Sorts
@@ -29,10 +32,21 @@ public class ViewSorts {
 		System.out.println("nom: " + sort.getNom());
 		System.out.println("type: "+ sort.getType());
 		System.out.println("niveau: "+ sort.getNiveau());
-		System.out.println(" ------ ");
-		System.out.println("Dé: "+ sort.getDe());
-		System.out.println("modif: "+ sort.getModif());
-		System.out.println(" -------- ");
+		System.out.println(" --- ");
+		if (sort instanceof SortDegat) {
+			System.out.println("Dé: "+ ((SortDegat) sort).getDe());
+			System.out.println("modif: "+ ((SortDegat) sort).getModif());
+		}
+		if (sort instanceof SortPortee) {
+			System.out.println("Portée: "+ ((SortPortee) sort).getPortee());
+		}
+		if (sort instanceof SortZone) {
+			System.out.println("Dé: "+ ((SortZone) sort).getDe());
+			System.out.println("modif: "+ ((SortZone) sort).getModif());
+			System.out.println("Portée: "+ ((SortZone) sort).getPortee());
+		}
+		System.out.println("------");
+		
 
 	}
 }

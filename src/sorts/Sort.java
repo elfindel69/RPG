@@ -1,5 +1,4 @@
 package sorts;
-import Utils.Degat;
 
 /**
  * Sortilèges
@@ -7,26 +6,17 @@ import Utils.Degat;
  * @version 0.0.1
  *
  */
-public class Sort implements Degat{
-	private String nom;
-	private int niveau;
-	private TypeSort type;
-	private int De;
-	private int modif;
+public class Sort{
+	protected String nom;
+	protected int niveau;
+	protected TypeSort type;
 	
-	public Sort(String lNom, int lNiveau, TypeSort lType, int lDe, int lModif) {
+	
+	public Sort(String lNom, int lNiveau, TypeSort lType) {
 		nom = lNom;
 		niveau = lNiveau;
 		type = lType;
-		De = lDe;
-		modif = lModif;
-		
 	}
-	
-	public int lancer() {
-		return doDegats(De, modif);
-	}
-
 	
 	public String getNom() {
 		return nom;
@@ -48,21 +38,7 @@ public class Sort implements Degat{
 		return type;
 	}
 
-	public int getDe() {
-		return De;
-	}
-
-	public void setDe(int de) {
-		De = de;
-	}
-
-	public int getModif() {
-		return modif;
-	}
-
-	public void setModif(int modif) {
-		this.modif = modif;
-	}
+	
 
 	@Override
 	public String toString() {

@@ -26,10 +26,8 @@ public class ViewEquip {
 		System.out.println("liste des équipements: ");
 		System.out.println(" - équipements de base:");
 		listEquip.stream().filter(x -> x.getType() == TypeEquip.Equipement).forEach(ViewEquip::describe);
-		System.out.println(" --- ");
 		System.out.println(" - armement:");
 		listEquip.stream().filter(x -> x.getType() == TypeEquip.Armement).forEach(ViewEquip::describe);
-		System.out.println("***");
 		System.out.println(" - potions:");
 		listEquip.stream().filter(x -> x.getType() == TypeEquip.Potion).forEach(ViewEquip::describe);
 		System.out.println("***");
