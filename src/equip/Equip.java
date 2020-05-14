@@ -1,6 +1,8 @@
 package equip;
 
 public class Equip {
+	protected static int sID;
+	protected int ID;
 	protected String nom;
 	protected TypeEquip type;
 	protected int prix;
@@ -9,6 +11,8 @@ public class Equip {
 		nom = lNom;
 		type = lType;
 		prix = lPrix;
+		ID = sID;
+		sID++;
 	}
 
 	public String getNom() {
@@ -33,6 +37,10 @@ public class Equip {
 
 	public void setPrix(int prix) {
 		this.prix = prix;
+	}
+	
+	public int getID() {
+		return ID;
 	}
 	
 	@Override

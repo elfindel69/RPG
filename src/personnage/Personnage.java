@@ -16,6 +16,8 @@ import sorts.Sort;
  *
  */
 public class Personnage {
+	private static int sID;
+	private int ID;
 	private String nom;
 	private Sexe sexe;
 	private String metier;
@@ -41,6 +43,9 @@ public class Personnage {
 		esprit = ThreadLocalRandom.current().nextInt(0, 100);
 		relationnel = ThreadLocalRandom.current().nextInt(0, 100);
 		argent = ThreadLocalRandom.current().nextInt(500, 2000);
+		
+		ID = sID;
+		sID++;
 		
 	}
 	
@@ -133,6 +138,10 @@ public class Personnage {
 		}
 		argent -= equip.getPrix();
 		this.lEquip.add(equip);
+	}
+
+	public int getID() {
+		return ID;
 	}
 
 }

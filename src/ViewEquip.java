@@ -28,28 +28,25 @@ public class ViewEquip {
 	 */
 	static int viewList(Scanner sc, List<Equip> listEquip) {
 		System.out.println("liste des équipements: ");
-		int i = 0;
+	
 		//équipement
 		System.out.println(" - équipement:");
-		List<String> listNoms1 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Equipement).map(x-> x.getNom()).collect(Collectors.toList());
-		for (String nom : listNoms1) {
-			System.out.println(i+". "+nom );
-			i++;
+		List<Equip> listEquip1 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Equipement).collect(Collectors.toList());
+		for (Equip equip : listEquip1) {
+			System.out.println(equip.getID()+". "+equip.getNom());
 		}
 		System.out.println("---");
 		//armement
 		System.out.println(" - armement:");
-		List<String> listNoms2 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Armement).map(x-> x.getNom()).collect(Collectors.toList());
-		for (String nom : listNoms2) {
-			System.out.println(i+". "+nom );
-			i++;
+		List<Equip> listEquip2 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Armement).collect(Collectors.toList());
+		for (Equip equip : listEquip2) {
+			System.out.println(equip.getID()+". "+equip.getNom());	
 		}
 		System.out.println("---");
 		System.out.println(" - potions:");
-		List<String> listNoms3 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Potion).map(x-> x.getNom()).collect(Collectors.toList());
-		for (String nom : listNoms3) {
-			System.out.println(i+". "+nom );
-			i++;
+		List<Equip> listEquip3 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Potion).collect(Collectors.toList());
+		for (Equip equip : listEquip3) {
+			System.out.println(equip.getID()+". "+equip.getNom());
 		}
 		System.out.println("***");
 		if (! sc.hasNextLine()) {
@@ -58,6 +55,24 @@ public class ViewEquip {
 		
 		int choice = sc.nextInt();
 		return choice;
+	}
+	
+	/**
+	 * récupération équip par id
+	 * @param id - id à récupérer
+	 * @param listEquip - liste à scanner
+	 * @return Equip - équipement trouvé
+	 */
+	static Equip recupEquipByID(int ID, List<Equip> listEquip) {
+		Equip equip = null;
+		for (Equip e : listEquip) {
+			if(e.getID() == ID) {
+				equip = e;
+				break;
+			}
+		}
+		return equip;
+		
 	}
 	
 	/**

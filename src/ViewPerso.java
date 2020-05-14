@@ -21,11 +21,12 @@ public class ViewPerso {
 	 */
 	static int viewList(Scanner sc, List<Personnage> listPersos) {
 		System.out.println("Liste de personnages");
-		int i=0;
+		
 		for (Personnage perso : listPersos) {
-			System.out.println(i+". "+perso.getNom());
-			i++;
+			System.out.println(perso.getID()+". "+perso.getNom());
+			
 		}
+		
 		System.out.println("***");
 		if(!sc.hasNextLine()) {
 			sc.hasNextLine();

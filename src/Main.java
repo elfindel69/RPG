@@ -88,13 +88,13 @@ public class Main {
 				//affichage des équipements
 				else if (affMenu == 2) {
 					int choice = ViewEquip.viewList(sc, listEquip);
-					Equip equip = listEquip.get(choice);
+					Equip equip = ViewEquip.recupEquipByID(choice, listEquip);
 					ViewEquip.describe(equip);
 				}
 				//affichage des sorts
 				else if (affMenu == 3) {
 					int choice = ViewSorts.viewList(sc, listSorts);
-					Sort sort = listSorts.get(choice);
+					Sort sort = ViewSorts.recupSortByID(choice, listSorts);
 					ViewSorts.describe(sort);
 				}
 			}
@@ -110,7 +110,7 @@ public class Main {
 					List <Equip> listAchats = new ArrayList<Equip>();
 					do {
 						int choiceEquip = ViewEquip.viewList(sc, listEquip);
-						Equip equip = listEquip.get(choiceEquip);
+						Equip equip = ViewEquip.recupEquipByID(choiceEquip, listEquip);
 						perso.addEquip(equip);
 						listAchats.add(equip);
 						goMenu = ViewMenu.editMenuEnd(sc, equip.getNom());
@@ -124,7 +124,7 @@ public class Main {
 					char goMenu = 'n';
 					do {
 						int choiceSorts = ViewSorts.viewList(sc, listSorts);
-						Sort sort = listSorts.get(choiceSorts);
+						Sort sort = ViewSorts.recupSortByID(choiceSorts, listSorts);
 						perso.addSort(sort);
 						goMenu = ViewMenu.editMenuEnd(sc, sort.getNom());
 					} while (goMenu != 'y');

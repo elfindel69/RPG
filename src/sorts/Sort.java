@@ -7,6 +7,8 @@ package sorts;
  *
  */
 public abstract class Sort{
+	protected static int sID;
+	protected int ID;
 	protected String nom;
 	protected int niveau;
 	protected TypeSort type;
@@ -16,6 +18,8 @@ public abstract class Sort{
 		nom = lNom;
 		niveau = lNiveau;
 		type = lType;
+		ID = sID;
+		sID++;
 	}
 	
 	public String getNom() {
@@ -38,7 +42,9 @@ public abstract class Sort{
 		return type;
 	}
 
-	
+	public int getID() {
+		return ID;
+	}
 
 	@Override
 	public String toString() {

@@ -18,29 +18,26 @@ public class ViewSorts {
 
 	
 	static int viewList(Scanner sc, List<Sort> listSorts) {
-		int i = 0;
+		
 		System.out.println("liste des sorts");
 		//eau
 		System.out.println(" - eau:");
-		List<String> listNoms1 = listSorts.stream().filter(x -> x.getType() == TypeSort.Eau).map(x-> x.getNom()).collect(Collectors.toList());
-		for (String nom : listNoms1) {
-			System.out.println(i+". "+nom );
-			i++;
+		List<Sort> listSorts1 = listSorts.stream().filter(x -> x.getType() == TypeSort.Eau).collect(Collectors.toList());
+		for (Sort sort : listSorts1) {
+			System.out.println(sort.getID()+". "+sort.getNom() );
 		}
 		System.out.println("---");
 		//énergie
 		System.out.println(" - énergie:");
-		List<String> listNoms2 = listSorts.stream().filter(x -> x.getType() == TypeSort.Energie).map(x-> x.getNom()).collect(Collectors.toList());
-		for (String nom : listNoms2) {
-			System.out.println(i+". "+nom );
-			i++;
+		List<Sort> listSorts2 = listSorts.stream().filter(x -> x.getType() == TypeSort.Energie).collect(Collectors.toList());
+		for (Sort sort : listSorts2) {
+			System.out.println(sort.getID()+". "+sort.getNom());
 		}
 		System.out.println("---");
 		System.out.println(" - feu:");
-		List<String> listNoms3 = listSorts.stream().filter(x -> x.getType() == TypeSort.Feu).map(x-> x.getNom()).collect(Collectors.toList());
-		for (String nom : listNoms3) {
-			System.out.println(i+". "+nom );
-			i++;
+		List<Sort> listSorts3 = listSorts.stream().filter(x -> x.getType() == TypeSort.Feu).collect(Collectors.toList());
+		for (Sort sort : listSorts3) {
+			System.out.println(sort.getID()+". "+sort.getNom() );
 		}
 		System.out.println("***");
 		if(!sc.hasNextLine()) {
@@ -50,7 +47,25 @@ public class ViewSorts {
 		return choice;
 	}
 
-
+	/**
+	 * récupération sort par id
+	 * @param id - id à récupérer
+	 * @param listSorts - liste à scanner
+	 * @return Sort - sort trouvé
+	 */
+	static Sort recupSortByID(int ID, List<Sort> listSorts) {
+		Sort sort = null;
+		for (Sort s: listSorts) {
+			if(s.getID() == ID) {
+				sort = s;
+				break;
+			}
+		}
+		return sort;
+		
+	}
+	
+	
 	/**
 	 * affichage d'un Sort
 	 * @param sort - sort à afficher
