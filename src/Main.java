@@ -77,6 +77,7 @@ public class Main {
 			//menu principal
 			System.out.println("Menu:");
 			System.out.println("1. affichage...");
+			System.out.println("2. ajout...");
 			int startMenu = sc.nextInt();
 			//affichage
 			if (startMenu == 1) {
@@ -99,37 +100,65 @@ public class Main {
 					ViewSorts.viewList(listSorts);
 				}
 			}
-			sc.nextLine();
+			//ajout équipement / sorts
+			else if (startMenu == 2) {
+				System.out.println("personnage à modifier:");
+				int i = 0;
+				for (Personnage perso : listPersos ) {
+					System.out.println(i+". "+perso.getNom());
+					i++;
+				}
+				sc.nextLine();
+				int choice = sc.nextInt();
+				Personnage perso = listPersos.get(choice);
+				System.out.println("éditer: ");
+				System.out.println("1. équipement");
+				System.out.println("2. sorts");
+				sc.nextLine();
+				int menuEquip = sc.nextInt();
+				
+				if (menuEquip == 1) {
+					char goMenu = 'n';
+					List <Equip> listAchats = new ArrayList<Equip>();
+					do {
+						System.out.println("liste des équipements:");
+						int j = 0;
+						for (Equip equip : listEquip ) {
+							System.out.println(j+". "+equip.getNom());
+							j++;
+						}
+						if (! sc.hasNextLine()) {
+							sc.nextLine();
+						}
+						
+						int choiceEquip = sc.nextInt();
+						Equip equip = listEquip.get(choiceEquip);
+						perso.addEquip(equip);
+						listAchats.add(equip);
+						System.out.println("équipement "+ equip.getNom()+" ajouté !");
+						System.out.println("Retour au menu principal ? y/n");
+						sc.nextLine();
+						String sexit = sc.nextLine();
+						goMenu = sexit.charAt(0);
+					} while (goMenu != 'y');
+					int sum = listAchats.stream().map(x -> x.getPrix()).reduce(0,(x,y) -> x+y);
+					System.out.println("total achats: "+sum);
+				}
+			}
+			if (! sc.hasNextLine()) {
+				sc.nextLine();
+			}
 			System.out.println("Quitter ? y/n");
 			String sexit = sc.nextLine();
 			exit = sexit.charAt(0);
 		}while (exit != 'y');
 		sc.close();
 		
-		
-		//test achat équipements - perso p1
-		
-		
-		//calcul somme achats
-	/*	System.out.println("équipement achetés: ");
-		p1.getlEquip().stream().forEach(System.out::println);
-		int sum = p1.getlEquip().stream().map(x -> x.getPrix()).reduce(0,(x,y) -> x+y);
-		System.out.println("total achats: "+sum);*/
-		//affichage après achats
-		/*System.out.println("après achat: ");
-		System.out.println("PV: "+p1.getPV());
-		System.out.println("mana: "+p1.getMana());
-		System.out.println("argent: "+p1.getArgent());*/
-		
 		//test sort s1
 		/*System.out.println("test boule de feu");
 		System.out.println("dégats: "+s1.lancer());*/
 		
-	
 		
-		//affichage des potions - perso p1
-		/*System.out.println("potions Perso 1");
-		p1.getlEquip().stream().filter(x -> x.getType() == TypeEquip.Potion ).forEach(System.out::println);*/
 	
 	}
 

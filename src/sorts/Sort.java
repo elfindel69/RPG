@@ -6,7 +6,7 @@ package sorts;
  * @version 0.0.1
  *
  */
-public class Sort{
+public abstract class Sort{
 	protected String nom;
 	protected int niveau;
 	protected TypeSort type;
