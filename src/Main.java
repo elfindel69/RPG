@@ -34,15 +34,15 @@ public class Main {
 		
 		//équipements
 		Equip e1 = new Equip("Couette", TypeEquip.Equipement,20);
-		listEquip.add(e1);
 		EquipPV e2 = new EquipPV("potion de vie", TypeEquip.Potion, 20, 10);
-		listEquip.add(e2);
 		EquipMagique e3 = new EquipMagique("potion de mana", TypeEquip.Potion, 20, 10);
-		listEquip.add(e3);
 		Arme a1 = new Arme("Beretta", 100, 6, 3);
-		listEquip.add(a1);
 		Arme a2 = new Arme("Dague",50,4,2);
+		listEquip.add(e1);
+		listEquip.add(a1);
 		listEquip.add(a2);
+		listEquip.add(e2);
+		listEquip.add(e3);
 		
 		//ajout équipement - perso p1
 		p1.addEquip(e1);
@@ -56,15 +56,15 @@ public class Main {
 		
 		//sorts
 		SortDegat s1 = new SortDegat("boule de feu",1,TypeSort.Feu,6,3);
-		listSorts.add(s1);
 		SortZone s2 = new SortZone("éclair en chaine",1,TypeSort.Energie,6,3,Portee.Faible);
-		listSorts.add(s2);
 		SortDegat s3 = new SortDegat("rayon de givre",1,TypeSort.Eau,6,3);
-		listSorts.add(s3);
 		SortPortee s4 = new SortPortee("lumière dansante",1,TypeSort.Energie,Portee.Moyenne);
-		listSorts.add(s4);
 		SortPortee s5 = new SortPortee("main de mage",1,TypeSort.Energie,Portee.Faible);
+		listSorts.add(s3);
+		listSorts.add(s2);
 		listSorts.add(s5);
+		listSorts.add(s4);
+		listSorts.add(s1);
 		
 		//ajout sorts - perso p1
 		p1.addSort(s1);
@@ -75,88 +75,71 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		do { 
 			//menu principal
-			System.out.println("Menu:");
-			System.out.println("1. affichage...");
-			System.out.println("2. ajout...");
-			int startMenu = sc.nextInt();
+			int startMenu = ViewMenu.startMenu(sc);
 			//affichage
 			if (startMenu == 1) {
-				System.out.println("Menu affichage:");
-				System.out.println("1. liste des personnages...");
-				System.out.println("2. liste des équipements...");
-				System.out.println("3. liste des sorts...");
-				sc.nextLine();
-				int affMenu = sc.nextInt();
+				int affMenu = ViewMenu.viewMenu(sc);
 				//affichage des persos
 				if (affMenu == 1) {	
-					ViewPerso.viewList(listPersos);
+					int choice = ViewPerso.viewList(sc, listPersos);
+					Personnage perso = listPersos.get(choice);
+					ViewPerso.describe(perso);
 				} 
 				//affichage des équipements
 				else if (affMenu == 2) {
-					ViewEquip.viewList(listEquip);
+					int choice = ViewEquip.viewList(sc, listEquip);
+					Equip equip = listEquip.get(choice);
+					ViewEquip.describe(equip);
 				}
 				//affichage des sorts
 				else if (affMenu == 3) {
-					ViewSorts.viewList(listSorts);
+					int choice = ViewSorts.viewList(sc, listSorts);
+					Sort sort = listSorts.get(choice);
+					ViewSorts.describe(sort);
 				}
 			}
 			//ajout équipement / sorts
 			else if (startMenu == 2) {
 				System.out.println("personnage à modifier:");
-				int i = 0;
-				for (Personnage perso : listPersos ) {
-					System.out.println(i+". "+perso.getNom());
-					i++;
-				}
-				sc.nextLine();
-				int choice = sc.nextInt();
+				int choice = ViewPerso.viewList(sc, listPersos);
 				Personnage perso = listPersos.get(choice);
-				System.out.println("éditer: ");
-				System.out.println("1. équipement");
-				System.out.println("2. sorts");
-				sc.nextLine();
-				int menuEquip = sc.nextInt();
-				
+				int menuEquip = ViewMenu.editMenu(sc);
+				//équipement
 				if (menuEquip == 1) {
 					char goMenu = 'n';
 					List <Equip> listAchats = new ArrayList<Equip>();
 					do {
-						System.out.println("liste des équipements:");
-						int j = 0;
-						for (Equip equip : listEquip ) {
-							System.out.println(j+". "+equip.getNom());
-							j++;
-						}
-						if (! sc.hasNextLine()) {
-							sc.nextLine();
-						}
-						
-						int choiceEquip = sc.nextInt();
+						int choiceEquip = ViewEquip.viewList(sc, listEquip);
 						Equip equip = listEquip.get(choiceEquip);
 						perso.addEquip(equip);
 						listAchats.add(equip);
-						System.out.println("équipement "+ equip.getNom()+" ajouté !");
-						System.out.println("Retour au menu principal ? y/n");
-						sc.nextLine();
-						String sexit = sc.nextLine();
-						goMenu = sexit.charAt(0);
+						goMenu = ViewMenu.editMenuEnd(sc, equip.getNom());
 					} while (goMenu != 'y');
+					//somme des achats
 					int sum = listAchats.stream().map(x -> x.getPrix()).reduce(0,(x,y) -> x+y);
 					System.out.println("total achats: "+sum);
 				}
+				//sorts
+				else if (menuEquip == 2) {
+					char goMenu = 'n';
+					do {
+						int choiceSorts = ViewSorts.viewList(sc, listSorts);
+						Sort sort = listSorts.get(choiceSorts);
+						perso.addSort(sort);
+						goMenu = ViewMenu.editMenuEnd(sc, sort.getNom());
+					} while (goMenu != 'y');
+				}
 			}
-			if (! sc.hasNextLine()) {
-				sc.nextLine();
-			}
+			
+			sc.nextLine();
+			
 			System.out.println("Quitter ? y/n");
 			String sexit = sc.nextLine();
 			exit = sexit.charAt(0);
 		}while (exit != 'y');
 		sc.close();
 		
-		//test sort s1
-		/*System.out.println("test boule de feu");
-		System.out.println("dégats: "+s1.lancer());*/
+		
 		
 		
 	

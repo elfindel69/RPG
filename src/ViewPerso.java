@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 import personnage.Personnage;
 
@@ -18,16 +19,25 @@ public class ViewPerso {
 	 * affichage List de Personnage
 	 * @param listPersos - liste à afficher
 	 */
-	static void viewList(List<Personnage> listPersos) {
+	static int viewList(Scanner sc, List<Personnage> listPersos) {
 		System.out.println("Liste de personnages");
-		listPersos.stream().forEach(ViewPerso::describe);
+		int i=0;
+		for (Personnage perso : listPersos) {
+			System.out.println(i+". "+perso.getNom());
+			i++;
+		}
 		System.out.println("***");
+		if(!sc.hasNextLine()) {
+			sc.hasNextLine();
+		}
+		int choice = sc.nextInt();
+		return choice;
 	}
 	/**
 	 * affichage Personnage
 	 * @param perso
 	 */
-	private static void describe (Personnage perso) {
+	 static void describe (Personnage perso) {
 		System.out.println("Personnage: ");
 		System.out.println("nom: " + perso.getNom());
 		System.out.println("archetype: "+ perso.getArchetype());

@@ -1,10 +1,14 @@
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 
 import equip.Arme;
 import equip.Equip;
 import equip.EquipMagique;
 import equip.EquipPV;
 import equip.TypeEquip;
+
 
 /**
  * affichage classes Equip
@@ -22,22 +26,45 @@ public class ViewEquip {
 	 * affichage List des Equip
 	 * @param listEquip - liste à afficher
 	 */
-	static void viewList(List<Equip> listEquip) {
+	static int viewList(Scanner sc, List<Equip> listEquip) {
 		System.out.println("liste des équipements: ");
-		System.out.println(" - équipements de base:");
-		listEquip.stream().filter(x -> x.getType() == TypeEquip.Equipement).forEach(ViewEquip::describe);
+		int i = 0;
+		//équipement
+		System.out.println(" - équipement:");
+		List<String> listNoms1 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Equipement).map(x-> x.getNom()).collect(Collectors.toList());
+		for (String nom : listNoms1) {
+			System.out.println(i+". "+nom );
+			i++;
+		}
+		System.out.println("---");
+		//armement
 		System.out.println(" - armement:");
-		listEquip.stream().filter(x -> x.getType() == TypeEquip.Armement).forEach(ViewEquip::describe);
+		List<String> listNoms2 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Armement).map(x-> x.getNom()).collect(Collectors.toList());
+		for (String nom : listNoms2) {
+			System.out.println(i+". "+nom );
+			i++;
+		}
+		System.out.println("---");
 		System.out.println(" - potions:");
-		listEquip.stream().filter(x -> x.getType() == TypeEquip.Potion).forEach(ViewEquip::describe);
+		List<String> listNoms3 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Potion).map(x-> x.getNom()).collect(Collectors.toList());
+		for (String nom : listNoms3) {
+			System.out.println(i+". "+nom );
+			i++;
+		}
 		System.out.println("***");
+		if (! sc.hasNextLine()) {
+			sc.nextLine();
+		}
+		
+		int choice = sc.nextInt();
+		return choice;
 	}
 	
 	/**
 	 * affichage des Equip
 	 * @param equip - équipement à afficher
 	 */
-	private static void describe(Equip equip) {
+	 static void describe(Equip equip) {
 		System.out.println("Equipement: ");
 		System.out.println("nom: " + equip.getNom());
 		System.out.println("type: "+ equip.getType());
