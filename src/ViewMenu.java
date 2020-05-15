@@ -6,6 +6,7 @@ public class ViewMenu {
 		System.out.println("Menu:");
 		System.out.println("1. affichage...");
 		System.out.println("2. ajout...");
+		System.out.println("3. nouveau...");
 		int choice = sc.nextInt();
 		return choice;
 	}
@@ -26,6 +27,18 @@ public class ViewMenu {
 		System.out.println("éditer: ");
 		System.out.println("1. équipement");
 		System.out.println("2. sorts");
+		if (! sc.hasNextLine()) {
+			sc.nextLine();
+		}
+		int choice = sc.nextInt();
+		return choice;
+	}
+	
+	static int newMenu(Scanner sc) {
+		System.out.println("Menu création:");
+		System.out.println("1. personnages...");
+		//System.out.println("2. liste des équipements...");
+		//System.out.println("3. liste des sorts...");
 		if (! sc.hasNextLine()) {
 			sc.nextLine();
 		}

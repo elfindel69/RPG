@@ -1,7 +1,9 @@
 import java.util.List;
 import java.util.Scanner;
 
+import personnage.Archetype;
 import personnage.Personnage;
+import personnage.Sexe;
 
 /**
  * classe d'affichage console des Personnages
@@ -63,5 +65,32 @@ public class ViewPerso {
 		}
 		System.out.println(" -------- ");
 	}
+	 
+	 	/**
+		 * affichage Personnage
+		 * @param perso
+		 */
+		 static Personnage create (Scanner sc) {
+			System.out.println("nouveau Personnage: ");
+			System.out.println("nom: ");
+			sc.nextLine();
+			String lNom = sc.nextLine();
+			System.out.println("sexe: 0 (M) / 1 (F)");
+			int choiceSexe = sc.nextInt();
+			Sexe lSexe =Sexe.values()[choiceSexe];
+			System.out.println("archetype: ");
+			System.out.println("0. rogue");
+			System.out.println("1. guerrier");
+			System.out.println("2. magicien");
+			sc.nextLine();
+			int choiceArche = sc.nextInt();
+			Archetype lArche  = Archetype.values()[choiceArche];
+			System.out.println("metier: ");
+			sc.nextLine();
+			String lMetier = sc.nextLine();
+			
+			return new Personnage(lNom,lSexe,lMetier,lArche);
+			
+		}
 
 }

@@ -130,7 +130,16 @@ public class Main {
 					} while (goMenu != 'y');
 				}
 			}
-			
+			//création
+			else if (startMenu == 3) {
+				int creaMenu = ViewMenu.newMenu(sc);
+				//personnage
+				if (creaMenu == 1) {
+					Personnage newPerso = ViewPerso.create(sc);
+					listPersos.add(newPerso);
+					ViewPerso.describe(newPerso);
+				}
+			}
 			sc.nextLine();
 			
 			System.out.println("Quitter ? y/n");
