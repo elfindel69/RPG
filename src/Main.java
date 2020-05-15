@@ -247,6 +247,45 @@ public class Main {
 					addComps(sc,listSpe,newPerso,TypeCompetence.Specialisation);
 					ViewPerso.describe(newPerso);
 				}
+				//équipement
+				if (creaMenu == 2) {
+					int choice = ViewEquip.newMenu(sc);
+					Equip newEquip = null;
+					//équipement
+					if (choice == 1) {
+						newEquip = ViewEquip.createEquip(sc);
+					}
+					//arme
+					if (choice == 2) {
+						newEquip = ViewEquip.createArme(sc);
+					}
+					//équip PV
+					if (choice == 3) {
+						newEquip = ViewEquip.createEquipPV(sc);
+					}
+					//équip magique
+					if (choice == 4) {
+						newEquip = ViewEquip.createEquipMagique(sc);
+					}
+					listEquip.add(newEquip);
+				}
+				else if (creaMenu == 3) {
+					int choice = ViewSorts.newMenu(sc);
+					Sort newSort = null;
+					//sort de dégâts
+					if (choice == 1) {
+						newSort = ViewSorts.createSortDegat(sc);
+					}
+					//sort de portee
+					if (choice == 2) {
+						newSort = ViewSorts.createSortPortee(sc);
+					}
+					//sort de zone
+					if (choice == 3) {
+						newSort = ViewSorts.createSortZone(sc);
+					}
+					listSorts.add(newSort);
+				}
 			}
 			sc.nextLine();
 			

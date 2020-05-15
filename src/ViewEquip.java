@@ -48,11 +48,17 @@ public class ViewEquip {
 		for (Equip equip : listEquip3) {
 			System.out.println(equip.getID()+". "+equip.getNom());
 		}
+		System.out.println("---");
+		System.out.println(" - équimement magique:");
+		List<Equip> listEquip4 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Magique).collect(Collectors.toList());
+		for (Equip equip : listEquip4) {
+			System.out.println(equip.getID()+". "+equip.getNom());
+		}
 		System.out.println("***");
 		if (! sc.hasNextLine()) {
 			sc.nextLine();
 		}
-		
+		System.out.println("choix: ");
 		int choice = sc.nextInt();
 		return choice;
 	}
@@ -73,6 +79,101 @@ public class ViewEquip {
 		}
 		return equip;
 		
+	}
+	/**
+	 * menu création
+	 * @param sc - Scanner
+	 * @return int - menu sélectionné
+	 */
+	static int newMenu(Scanner sc) {
+		System.out.println("création équipement:");
+		System.out.println("1. équipement...");
+		System.out.println("2. armement...");
+		System.out.println("3. potion de vie...");
+		System.out.println("4. equipement magique...");
+		if (! sc.hasNextLine()) {
+			sc.nextLine();
+		}
+		int choice = sc.nextInt();
+		return choice;
+	}
+	
+	/**
+	 * création Equipement
+	 * @param sc - Scanner
+	 */
+	 static Equip createEquip (Scanner sc) {
+		System.out.println("nouvel Equipement: ");
+		System.out.println("nom: ");
+		sc.nextLine();
+		String lNom = sc.nextLine();
+		System.out.println("prix: ");
+		int lPrix = sc.nextInt();
+		Equip equip = new Equip(lNom,TypeEquip.Equipement,lPrix);
+		return equip;
+	}
+	 
+ 	/**
+	 * création Armement
+	 * @param sc - Scanner
+	 */
+	 static Arme createArme (Scanner sc) {
+		System.out.println("nouvelle Arme: ");
+		System.out.println("nom: ");
+		sc.nextLine();
+		String lNom = sc.nextLine();
+		System.out.println("prix: ");
+		int lPrix = sc.nextInt();
+		sc.nextLine();
+		System.out.println("Dé: ");
+		int lDe = sc.nextInt();
+		sc.nextLine();
+		System.out.println("modificateur: ");
+		int lModif = sc.nextInt();
+		return new Arme(lNom, lPrix, lDe, lModif);
+	}
+	 
+	/** création équipement PV
+	 * @param sc - Scanner
+	 */
+	 static EquipPV createEquipPV (Scanner sc) {
+		System.out.println("nouvel équipement PV: ");
+		System.out.println("nom: ");
+		sc.nextLine();
+		String lNom = sc.nextLine();
+		System.out.println("prix: ");
+		int lPrix = sc.nextInt();
+		System.out.println("type: ");
+		System.out.println("3. potion");
+		System.out.println("4. magique");
+		sc.nextLine();
+		int choice = sc.nextInt();
+		TypeEquip lType  = TypeEquip.values()[choice];
+		System.out.println("PV gagnés: ");
+		int lPV = sc.nextInt();
+		return new EquipPV(lNom, lType, lPrix, lPV );
+	}
+	 
+	/** création équipement magique
+	 * @param sc - Scanner
+	 */
+	 static EquipMagique createEquipMagique (Scanner sc) {
+		System.out.println("nouvel équipement Magique: ");
+		System.out.println("nom: ");
+		sc.nextLine();
+		String lNom = sc.nextLine();
+		System.out.println("prix: ");
+		int lPrix = sc.nextInt();
+		System.out.println("type: ");
+		System.out.println("3. potion");
+		System.out.println("4. magique");
+		sc.nextLine();
+		int choice = sc.nextInt();
+		TypeEquip lType  = TypeEquip.values()[choice];
+		sc.nextLine();
+		System.out.println("PM gagnés: ");
+		int lMana = sc.nextInt();
+		return new EquipMagique(lNom, lType, lPrix, lMana);
 	}
 	
 	/**

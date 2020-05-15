@@ -79,8 +79,8 @@ public class ViewPerso {
 	}
 	 
 	 	/**
-		 * affichage Personnage
-		 * @param perso
+		 * création de Personnage
+		 * @param sc - Scanner
 		 */
 		 static Personnage create (Scanner sc) {
 			System.out.println("nouveau Personnage: ");

@@ -41,8 +41,8 @@ public class ViewMenu {
 	static int newMenu(Scanner sc) {
 		System.out.println("Menu création:");
 		System.out.println("1. personnages...");
-		//System.out.println("2. liste des équipements...");
-		//System.out.println("3. liste des sorts...");
+		System.out.println("2. équipements...");
+		System.out.println("3. sorts...");
 		if (! sc.hasNextLine()) {
 			sc.nextLine();
 		}

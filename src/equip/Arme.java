@@ -10,7 +10,6 @@ public class Arme extends Equip implements Degat{
 		super(lNom, TypeEquip.Armement, lPrix);
 		this.de = lDe;
 		this.modif = lModif;
-		// TODO Auto-generated constructor stub
 	}
 	
 	public int tirer() {
