@@ -1,8 +1,10 @@
 package personnage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
+import Utils.MyRandom;
+import competence.Habilete;
+import competence.Specialisation;
 import equip.Equip;
 import equip.EquipMagique;
 import equip.EquipPV;
@@ -30,8 +32,13 @@ public class Personnage {
 	private int esprit  = 0;
 	private int relationnel = 0;
 	private int argent = 0;
-	private List<Sort> lSorts = new ArrayList<Sort>();
-	private List<Equip> lEquip = new ArrayList<Equip>();
+	private int ptsDestin = 0;
+	private int PCHab = 8;
+	private int PCSpe = 8;
+	private List<Sort> listSorts = new ArrayList<Sort>();
+	private List<Equip> listEquip = new ArrayList<Equip>();
+	private List<Habilete> listHab = new ArrayList<Habilete>();
+	private List<Specialisation> listSpe = new ArrayList<Specialisation>();
 	
 	public Personnage(String lNom, Sexe lSexe, String lMetier, Archetype lArche) {
 		nom = lNom;
@@ -39,11 +46,12 @@ public class Personnage {
 		metier = lMetier;
 		archetype = lArche;
 		
-		corps = ThreadLocalRandom.current().nextInt(0, 100);
-		esprit = ThreadLocalRandom.current().nextInt(0, 100);
-		relationnel = ThreadLocalRandom.current().nextInt(0, 100);
-		argent = ThreadLocalRandom.current().nextInt(500, 2000);
+		corps = (new MyRandom(0,99)).randomize();
+		esprit = (new MyRandom(0,99)).randomize();
+		relationnel = (new MyRandom(0,99)).randomize();
+		argent = (new MyRandom(500,2000)).randomize();
 		
+		ptsDestin = (new MyRandom(0,3)).randomize();
 		ID = sID;
 		sID++;
 		
@@ -120,15 +128,33 @@ public class Personnage {
 	}
 	
 	public List<Sort> getlSorts() {
-		return lSorts;
+		return listSorts;
 	}
-	public void addSort(Sort s) {
-		this.lSorts.add(s);
+	/**
+	 * ajout de sorts
+	 * @param s - Sort à ajouter
+	 * @return bool - sort ajouté ?
+	 */
+	public boolean addSort(Sort s) {
+		boolean added = false;
+		if (listSorts.size() < 3 + (niveau - 1)) {
+			this.listSorts.add(s);
+			added = true;
+		}
+		else {
+			System.out.println("liste de sorts pleine!");
+		}
+		return added;
 	}
 	
 	public List<Equip> getlEquip() {
-		return lEquip;
+		return listEquip;
 	}
+	
+	/**
+	 * ajout équipement
+	 * @param equip - classe Equip à ajouter
+	 */
 	public void addEquip(Equip equip) {
 		if (equip instanceof EquipMagique) {
 			mana += ((EquipMagique) equip).getMana();
@@ -137,11 +163,124 @@ public class Personnage {
 			PV += ((EquipPV) equip).getPV();
 		}
 		argent -= equip.getPrix();
-		this.lEquip.add(equip);
+		this.listEquip.add(equip);
 	}
 
 	public int getID() {
 		return ID;
 	}
+
+	public int getPtsDestin() {
+		return ptsDestin;
+	}
+	
+	/**
+	 * ajout de points de destin
+	 * @param lptsDestin - nb de pts à ajouter
+	 */
+	public void addPtsDestin(int lptsDestin) {
+		this.ptsDestin += lptsDestin;
+	}
+
+	public int getPCHab() {
+		return PCHab;
+	}
+	
+	/**
+	 * ajout de pts d'habileté
+	 * @param lPCHab - nb de pts à ajouter
+	 */
+	public void addPCHab(int lPCHab) {
+		PCHab += lPCHab;
+	}
+
+	public int getPCSpe() {
+		return PCSpe;
+	}
+
+	/**
+	 * ajout de pts de spécialisation
+	 * @param lPCSpe - nb de pts à ajouter
+	 */
+	public void addPCSpe(int lPCSpe) {
+		PCSpe += lPCSpe;
+	}
+
+
+	public List<Habilete> getListHab() {
+		return listHab;
+	}
+
+	/**
+	 * ajout habileté
+	 * @param lHab - Habilete à ajouter
+	 * @return bool - habileté ajoutée ? 
+	 */
+	public boolean addListHab(Habilete lHab) {
+		boolean added = false;
+		if (niveau == 1 && listHab.size() <= 3 && PCHab > 0) {
+			this.listHab.add(lHab);
+			PCHab -= lHab.getNiveau();
+			added = true;
+		} 
+		else if ( niveau == 3 && listHab.size() <= 4 && PCHab >0) {
+			this.listHab.add(lHab);
+			PCHab -= lHab.getNiveau();
+			added = true;
+		}
+		else if (niveau == 7 && listHab.size() <= 5 && PCHab >0) {
+			this.listHab.add(lHab);
+			PCHab -= lHab.getNiveau();
+			added = true;
+		}
+		else if (niveau == 12 && listHab.size() <= 6 && PCHab >0) {
+			this.listHab.add(lHab);
+			PCHab -= lHab.getNiveau();
+			added = true;
+		}
+		else {
+			System.out.println("liste d'habiletés pleine!");
+		}
+		return added;
+	}
+
+	public List<Specialisation> getListSpe() {
+		return listSpe;
+	}
+
+	/**
+	 * ajout de spécialisation
+	 * @param lSpe - Specialisation à ajouter
+	 * @return bool - spé ajoutée ? 
+	 */
+	public boolean addListSpe(Specialisation lSpe) {
+		boolean added  = false;
+		if (niveau == 1 && listSpe.size() <= 3 && PCSpe > 0) {
+			this.listSpe.add(lSpe);
+			PCSpe -= lSpe.getNiveau();
+			added = true;
+		} 
+		else if ( niveau == 2 && listSpe.size() <= 4 && PCSpe >0) {
+			this.listSpe.add(lSpe);
+			PCSpe -= lSpe.getNiveau();
+			added = true;
+		}
+		else if (niveau == 5 && listSpe.size() <= 5 && PCSpe >0) {
+			this.listSpe.add(lSpe);
+			PCSpe -= lSpe.getNiveau();
+			added = true;
+		}
+		else if (niveau == 10 && listSpe.size() <= 6 && PCSpe >0) {
+			this.listSpe.add(lSpe);
+			PCSpe -= lSpe.getNiveau();
+			added = true;
+		}
+		else {
+			System.out.println("liste de spécilisations pleine!");
+		}
+		return added;
+	}
+
+	
 
 }

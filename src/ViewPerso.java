@@ -12,10 +12,6 @@ import personnage.Sexe;
  *
  */
 public class ViewPerso {
-
-	public ViewPerso() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	/**
 	 * affichage List de Personnage
@@ -52,16 +48,32 @@ public class ViewPerso {
 		System.out.println("PV: "+perso.getPV());
 		System.out.println("XP: "+perso.getXP());
 		System.out.println("mana: "+perso.getMana());
-		
+		System.out.println("pts de destin: "+perso.getPtsDestin());
+		System.out.println("PC habiletés: "+perso.getPCHab());
+		System.out.println("PC spés: "+perso.getPCSpe());
+		//équipement
 		if (perso.getlEquip().size() > 0) {
 			System.out.println(" ----- ");
 			System.out.println("Equipement: ");
 			perso.getlEquip().stream().forEach(System.out::println);
 		}
+		//sorts
 		if (perso.getlSorts().size() > 0) {
 			System.out.println(" ----- ");
 			System.out.println("Sorts: ");
 			perso.getlSorts().stream().forEach(System.out::println);
+		}
+		//habiletés
+		if (perso.getListHab().size() > 0) {
+			System.out.println(" ----- ");
+			System.out.println("Habiletés: ");
+			perso.getListHab().stream().forEach(System.out::println);
+		}
+		//spés
+		if (perso.getListSpe().size() > 0) {
+			System.out.println(" ----- ");
+			System.out.println("Spés: ");
+			perso.getListSpe().stream().forEach(System.out::println);
 		}
 		System.out.println(" -------- ");
 	}
