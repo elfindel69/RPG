@@ -46,6 +46,9 @@ public class ViewPerso {
 		System.out.println("relationnel: "+perso.getRelationnel());
 		System.out.println("argent: "+perso.getArgent());
 		System.out.println("PV: "+perso.getPV());
+		if (perso.getArmure() > 0) {
+			System.out.println("armure: "+perso.getArmure());
+		}
 		System.out.println("XP: "+perso.getXP());
 		System.out.println("mana: "+perso.getMana());
 		System.out.println("pts de destin: "+perso.getPtsDestin());

@@ -6,6 +6,7 @@ import Utils.MyRandom;
 import competence.Habilete;
 import competence.Specialisation;
 import equip.Equip;
+import equip.EquipArmure;
 import equip.EquipMagique;
 import equip.EquipPV;
 import sorts.Sort;
@@ -28,6 +29,7 @@ public class Personnage {
 	private int XP = 0;
 	private int mana = 25;
 	private int PV = 50;
+	private int armure = 0;
 	private int corps = 0;
 	private int esprit  = 0;
 	private int relationnel = 0;
@@ -162,6 +164,9 @@ public class Personnage {
 		if (equip instanceof EquipPV) {
 			PV += ((EquipPV) equip).getPV();
 		}
+		if (equip instanceof EquipArmure) {
+			armure += ((EquipArmure) equip).getArmure();
+		}
 		argent -= equip.getPrix();
 		this.listEquip.add(equip);
 	}
@@ -279,6 +284,14 @@ public class Personnage {
 			System.out.println("liste de spécilisations pleine!");
 		}
 		return added;
+	}
+
+	public int getArmure() {
+		return armure;
+	}
+
+	public void setArmure(int armure) {
+		this.armure = armure;
 	}
 
 	

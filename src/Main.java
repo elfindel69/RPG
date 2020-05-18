@@ -267,6 +267,10 @@ public class Main {
 					if (choice == 4) {
 						newEquip = ViewEquip.createEquipMagique(sc);
 					}
+					//armure
+					if (choice == 5) {
+						newEquip = ViewEquip.createEquipArmure(sc);
+					}
 					listEquip.add(newEquip);
 				}
 				else if (creaMenu == 3) {

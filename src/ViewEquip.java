@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import equip.Arme;
 import equip.Equip;
+import equip.EquipArmure;
 import equip.EquipMagique;
 import equip.EquipPV;
 import equip.TypeEquip;
@@ -54,6 +55,12 @@ public class ViewEquip {
 		for (Equip equip : listEquip4) {
 			System.out.println(equip.getID()+". "+equip.getNom());
 		}
+		System.out.println("---");
+		System.out.println(" - armures:");
+		List<Equip> listEquip5 = listEquip.stream().filter(x -> x.getType() == TypeEquip.Protection).collect(Collectors.toList());
+		for (Equip equip : listEquip5) {
+			System.out.println(equip.getID()+". "+equip.getNom());
+		}
 		System.out.println("***");
 		if (! sc.hasNextLine()) {
 			sc.nextLine();
@@ -91,6 +98,7 @@ public class ViewEquip {
 		System.out.println("2. armement...");
 		System.out.println("3. potion de vie...");
 		System.out.println("4. equipement magique...");
+		System.out.println("5. armure...");
 		if (! sc.hasNextLine()) {
 			sc.nextLine();
 		}
@@ -175,6 +183,25 @@ public class ViewEquip {
 		int lMana = sc.nextInt();
 		return new EquipMagique(lNom, lType, lPrix, lMana);
 	}
+	 
+	 /** création armure
+	 * @param sc - Scanner
+	 */
+	 static EquipArmure createEquipArmure (Scanner sc) {
+		System.out.println("nouvel équipement Magique: ");
+		System.out.println("nom: ");
+		sc.nextLine();
+		String lNom = sc.nextLine();
+		System.out.println("prix: ");
+		int lPrix = sc.nextInt();
+		System.out.println("type: ");
+		System.out.println("3. potion");
+		System.out.println("4. magique");
+		sc.nextLine();
+		System.out.println("Armure gagnée: ");
+		int lArmure = sc.nextInt();
+		return new EquipArmure(lNom, lPrix, lArmure);
+	}
 	
 	/**
 	 * affichage des Equip
@@ -199,7 +226,10 @@ public class ViewEquip {
 			System.out.println(" ------ ");
 			System.out.println("gain mana: "+ ((EquipMagique) equip).getMana());
 		}
-		
+		if  (equip instanceof EquipArmure) {
+			System.out.println(" ------ ");
+			System.out.println("gain armure: "+ ((EquipArmure) equip).getArmure());
+		}
 		System.out.println(" -------- ");
 	}
 
