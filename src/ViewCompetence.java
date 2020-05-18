@@ -2,6 +2,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import competence.Competence;
+import competence.Habilete;
+import competence.Specialisation;
 import competence.TypeCompetence;
 
 
@@ -53,6 +55,35 @@ public class ViewCompetence {
 		System.out.println("type: "+comp.getType());
 		System.out.println("niveau: " + comp.getNiveau());
 		System.out.println(" -------- ");
+	}
+
+	public static int newMenu(Scanner sc) {
+		System.out.println("création compétence:");
+		System.out.println("1. habileté...");
+		System.out.println("2. spécialisation...");
+		if (! sc.hasNextLine()) {
+			sc.nextLine();
+		}
+		int choice = sc.nextInt();
+		return choice;
+	}
+
+	public static Competence createHabilete(Scanner sc, TypeCompetence lType) {
+		Competence comp = null;
+		System.out.println("nouvel équipement Magique: ");
+		System.out.println("nom: ");
+		sc.nextLine();
+		String lNom = sc.nextLine();
+		System.out.println("niveau: ");
+		int lNiveau = sc.nextInt();
+		
+		if (lType == TypeCompetence.Habilete) {
+			comp = new Habilete(lNom, lNiveau);
+		}
+		if (lType == TypeCompetence.Specialisation) {
+			comp = new Specialisation(lNom, lNiveau);
+		}
+		return comp;
 	}
 	 
 }

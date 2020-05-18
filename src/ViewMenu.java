@@ -43,6 +43,7 @@ public class ViewMenu {
 		System.out.println("1. personnages...");
 		System.out.println("2. équipements...");
 		System.out.println("3. sorts...");
+		System.out.println("4. competences...");
 		if (! sc.hasNextLine()) {
 			sc.nextLine();
 		}

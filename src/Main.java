@@ -290,6 +290,21 @@ public class Main {
 					}
 					listSorts.add(newSort);
 				}
+				//compétence
+				else if (creaMenu == 4) {
+					int choice = ViewCompetence.newMenu(sc);
+					Competence comp = null;
+					//habileté
+					if (choice == 1) {
+						comp = ViewCompetence.createHabilete(sc, TypeCompetence.Habilete);
+						listHab.add(comp);
+					}
+					//spécialisation
+					if (choice == 2) {
+						comp = ViewCompetence.createHabilete(sc, TypeCompetence.Specialisation);
+						listSpe.add(comp);
+					}
+				}
 			}
 			sc.nextLine();
 			
