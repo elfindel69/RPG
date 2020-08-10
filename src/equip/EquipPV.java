@@ -3,6 +3,10 @@ package equip;
 public class EquipPV extends Equip {
 	
 	private int PV;
+	
+	public EquipPV() {
+		super();
+	}
 
 	public EquipPV(String lNom, TypeEquip lType, int lPrix, int lPV) {
 		super(lNom, lType, lPrix);

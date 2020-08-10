@@ -5,6 +5,10 @@ public class Arme extends Equip implements Degat{
 
 	private int de;
 	private int modif;
+	
+	public Arme () {
+		super();
+	}
 
 	public Arme(String lNom, int lPrix, int lDe, int lModif) {
 		super(lNom, TypeEquip.Armement, lPrix);

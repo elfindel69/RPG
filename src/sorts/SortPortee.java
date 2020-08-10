@@ -3,6 +3,11 @@ package sorts;
 public class SortPortee extends Sort {
 
 	private Portee portee;
+	
+	public SortPortee() {
+		super();
+	}
+	
 	public SortPortee(String lNom, int lNiveau, TypeSort lType, Portee lPortee) {
 		super(lNom, lNiveau, lType);
 		this.setPortee(lPortee);

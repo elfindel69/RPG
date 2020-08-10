@@ -14,6 +14,7 @@ import equip.TypeEquip;
 import personnage.Archetype;
 import personnage.Personnage;
 import personnage.Sexe;
+import serialization.XMLSave;
 import sorts.Portee;
 import sorts.Sort;
 import sorts.SortDegat;
@@ -185,30 +186,40 @@ public class Main {
 					int choice = ViewPerso.viewList(sc, listPersos);
 					Personnage perso = listPersos.get(choice);
 					ViewPerso.describe(perso);
+					String file = "perso_"+perso.getID()+".xml";
+					XMLSave.saveItem(file, perso);
 				} 
 				//affichage des équipements
 				else if (affMenu == 2) {
 					int choice = ViewEquip.viewList(sc, listEquip);
 					Equip equip = ViewEquip.recupEquipByID(choice, listEquip);
 					ViewEquip.describe(equip);
+					String file = "equip_"+equip.getID()+".xml";
+					XMLSave.saveItem(file, equip);
 				}
 				//affichage des sorts
 				else if (affMenu == 3) {
 					int choice = ViewSorts.viewList(sc, listSorts);
 					Sort sort = ViewSorts.recupSortByID(choice, listSorts);
 					ViewSorts.describe(sort);
+					String file = "sort_"+sort.getID()+".xml";
+					XMLSave.saveItem(file, sort);
 				}
 				//affichage des habiletés
 				else if (affMenu == 4) {
 					int choice = ViewCompetence.viewList(sc, listHab, TypeCompetence.Habilete);
 					Competence comp = ViewCompetence.recupCompByID(choice, listHab);
 					ViewCompetence.describe(comp);
+					String file = "comp_"+comp.getID()+".xml";
+					XMLSave.saveItem(file, comp);
 				}
 				//affichage des spés
 				else if (affMenu == 5) {
 					int choice = ViewCompetence.viewList(sc, listSpe, TypeCompetence.Specialisation);
 					Competence comp = ViewCompetence.recupCompByID(choice, listSpe);
 					ViewCompetence.describe(comp);
+					String file = "comp_"+comp.getID()+".xml";
+					XMLSave.saveItem(file, comp);
 				}
 			}
 			//ajout item
@@ -233,6 +244,8 @@ public class Main {
 				else if (menuEquip == 4) {
 					addComps(sc,listSpe,perso,TypeCompetence.Specialisation);
 				}
+				String file = "perso_"+perso.getID()+".xml";
+				XMLSave.saveItem(file, perso);
 			}
 			//création
 			else if (startMenu == 3) {
@@ -240,12 +253,14 @@ public class Main {
 				//personnage
 				if (creaMenu == 1) {
 					Personnage newPerso = ViewPerso.create(sc);
-					listPersos.add(newPerso);
 					addEquips(sc,listEquip,newPerso);
 					addSorts(sc,listSorts,newPerso);
 					addComps(sc,listHab,newPerso,TypeCompetence.Habilete);
 					addComps(sc,listSpe,newPerso,TypeCompetence.Specialisation);
+					listPersos.add(newPerso);
 					ViewPerso.describe(newPerso);
+					String file = "perso_"+newPerso.getID()+".xml";
+					XMLSave.saveItem(file, newPerso);
 				}
 				//équipement
 				if (creaMenu == 2) {
@@ -272,6 +287,8 @@ public class Main {
 						newEquip = ViewEquip.createEquipArmure(sc);
 					}
 					listEquip.add(newEquip);
+					String file = "equip_"+newEquip.getID()+".xml";
+					XMLSave.saveItem(file, newEquip);
 				}
 				else if (creaMenu == 3) {
 					int choice = ViewSorts.newMenu(sc);
@@ -289,6 +306,8 @@ public class Main {
 						newSort = ViewSorts.createSortZone(sc);
 					}
 					listSorts.add(newSort);
+					String file = "sort_"+newSort.getID()+".xml";
+					XMLSave.saveItem(file, newSort);
 				}
 				//compétence
 				else if (creaMenu == 4) {
@@ -298,11 +317,15 @@ public class Main {
 					if (choice == 1) {
 						comp = ViewCompetence.createHabilete(sc, TypeCompetence.Habilete);
 						listHab.add(comp);
+						String file = "comp_"+comp.getID()+".xml";
+						XMLSave.saveItem(file, comp);
 					}
 					//spécialisation
 					if (choice == 2) {
 						comp = ViewCompetence.createHabilete(sc, TypeCompetence.Specialisation);
 						listSpe.add(comp);
+						String file = "comp_"+comp.getID()+".xml";
+						XMLSave.saveItem(file, comp);
 					}
 				}
 			}
@@ -313,6 +336,7 @@ public class Main {
 			exit = sexit.charAt(0);
 		}while (exit != 'y');
 		sc.close();
+		
 	}
 
 }

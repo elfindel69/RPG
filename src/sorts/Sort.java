@@ -13,6 +13,10 @@ public abstract class Sort{
 	protected int niveau;
 	protected TypeSort type;
 	
+	public Sort() {
+		ID = sID;
+		sID++;
+	}
 	
 	public Sort(String lNom, int lNiveau, TypeSort lType) {
 		nom = lNom;

@@ -42,6 +42,11 @@ public class Personnage {
 	private List<Habilete> listHab = new ArrayList<Habilete>();
 	private List<Specialisation> listSpe = new ArrayList<Specialisation>();
 	
+	public Personnage () {
+		ID = sID;
+		sID++;
+	}
+	
 	public Personnage(String lNom, Sexe lSexe, String lMetier, Archetype lArche) {
 		nom = lNom;
 		sexe = lSexe;

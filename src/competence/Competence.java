@@ -7,6 +7,11 @@ public abstract class Competence {
 	protected int niveau = 0;
 	protected TypeCompetence type;
 	
+	public Competence() {
+		this.ID = sID;
+		sID++;
+	}
+	
 	public Competence (String lNom, int lNiveau, TypeCompetence lType) {
 		this.nom = lNom;
 		addNiveau(lNiveau);

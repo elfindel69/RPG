@@ -3,6 +3,10 @@ package sorts;
 public class SortZone extends SortDegat {
 
 	private Portee portee;
+	
+	public SortZone () {
+		super();
+	}
 
 	public SortZone(String lNom, int lNiveau, TypeSort lType, int lDe, int lModif, Portee lPortee) {
 		super(lNom, lNiveau, lType, lDe, lModif);

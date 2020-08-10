@@ -7,6 +7,10 @@ public class Equip {
 	protected TypeEquip type;
 	protected int prix;
 
+	public Equip() {
+		ID = sID;
+		sID++;
+	}
 	public Equip(String lNom, TypeEquip lType,int lPrix) {
 		nom = lNom;
 		type = lType;

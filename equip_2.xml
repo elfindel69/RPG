@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_251" class="java.beans.XMLDecoder">
+ <object class="equip.EquipMagique">
+  <void property="mana">
+   <int>10</int>
+  </void>
+  <void property="nom">
+   <string>potion de mana</string>
+  </void>
+  <void property="prix">
+   <int>20</int>
+  </void>
+  <void property="type">
+   <object class="java.lang.Enum" method="valueOf">
+    <class>equip.TypeEquip</class>
+    <string>Potion</string>
+   </object>
+  </void>
+ </object>
+</java>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_251" class="java.beans.XMLDecoder">
+ <object class="personnage.Personnage">
+  <void property="PV">
+   <int>60</int>
+  </void>
+  <void property="archetype">
+   <object class="java.lang.Enum" method="valueOf">
+    <class>personnage.Archetype</class>
+    <string>Magicien</string>
+   </object>
+  </void>
+  <void property="argent">
+   <int>1279</int>
+  </void>
+  <void property="corps">
+   <int>26</int>
+  </void>
+  <void property="esprit">
+   <int>6</int>
+  </void>
+  <void property="mana">
+   <int>35</int>
+  </void>
+  <void property="metier">
+   <string>magicien</string>
+  </void>
+  <void property="nom">
+   <string>TITI</string>
+  </void>
+  <void property="relationnel">
+   <int>62</int>
+  </void>
+ </object>
+</java>
