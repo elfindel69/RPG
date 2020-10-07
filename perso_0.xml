@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_251" class="java.beans.XMLDecoder">
+<java version="14.0.2" class="java.beans.XMLDecoder">
  <object class="personnage.Personnage">
   <void property="PV">
    <int>60</int>
@@ -11,13 +11,13 @@
    </object>
   </void>
   <void property="argent">
-   <int>1530</int>
+   <int>1130</int>
   </void>
   <void property="corps">
-   <int>25</int>
+   <int>76</int>
   </void>
   <void property="esprit">
-   <int>56</int>
+   <int>84</int>
   </void>
   <void property="mana">
    <int>35</int>
@@ -29,7 +29,7 @@
    <string>TOTO</string>
   </void>
   <void property="relationnel">
-   <int>90</int>
+   <int>94</int>
   </void>
  </object>
 </java>
